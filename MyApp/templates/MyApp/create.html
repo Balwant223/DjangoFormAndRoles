@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Create Project{% endblock %}
 {% block content %}
-    <form class="create-project">
-        {{ form.as_p }}
-        {{% csrf_token %}}
-        <input type="submit" value="Create Project">
-    </form>
+<form class="create-project">
+    {{ form.as_p }}
+    {{% csrf_token %}}
+    <input type="submit" value="Create Project">
+</form>
 {% endblock %}
