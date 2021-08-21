@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Welcome to Project Management{% endblock %}
+{% block content %}
+    <a href="{% url "MyApp:create" %}"><button type="button" value="create">Create</button></a>
+    <a href="{% url "MyApp:list" %}"><button type="button" value="view">View</button></a>
+{% endblock %}

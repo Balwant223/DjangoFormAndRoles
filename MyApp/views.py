@@ -3,6 +3,9 @@ from .forms import ProjectForm
 from .models import Project
 
 
+def projectHome(request):
+    return render(request,'MyApp/home.html')
+
 def createProject(request):
     if request.method == 'POST':
         form = ProjectForm(request.POST)
