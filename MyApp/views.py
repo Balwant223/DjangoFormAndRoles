@@ -17,3 +17,9 @@ def createProject(request):
         form = ProjectForm()
     context = {'form': form}
     return render(request, 'MyApp/create.html', context)
+
+def listProject(request):
+    projects=Project.objects.all()
+    print(projects)
+    context={'projects':projects}
+    return render(request,'MyApp/list.html',context)
