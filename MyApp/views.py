@@ -5,7 +5,7 @@ from .models import Project
 
 def createProject(request):
     if request.method == 'POST':
-        form = ProjectForm()
+        form = ProjectForm(request.POST)
         if form.is_valid():
             project = Project()
             project.name = form.cleaned_data['name']

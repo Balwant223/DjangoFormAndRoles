@@ -3,6 +3,6 @@ from .views import createProject
 
 app_name = 'MyApp'
 
-url_patterns = [
-    path('Create', createProject, name='create'),
+urlpatterns = [
+    path('create', createProject, name='create'),
 ]
