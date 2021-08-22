@@ -1,6 +1,68 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% block title %}Welcome to Project Management{% endblock %}
 {% block content %}
-    <a href="{% url "MyApp:create" %}"><button class="btn btn-primary btn-lg" type="button" value="create">Create</button></a>
-    <a href="{% url "MyApp:list" %}"><button class="btn btn-info btn-lg" type="button" value="view">View</button></a>
+<div class="card-columns">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Create Project</h4>
+            <button class="btn btn-primary btn-lg" type="button"  data-toggle="modal" data-target="#createpro">Create</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">List All Projects</h4>
+            <button class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="#listpro">View</button>
+        </div>
+    </div>
+</div>
+<!-- List All Project -->
+<div class="modal fade" id="listpro" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">All Projects</h1>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group" id="all_projects_list">
+                    {% for project in projects %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center" id="project_{{project.id}}">
+                            {{ project.name }}
+                            <span class="badge badge-info" style="margin-left: 50%;">
+                                <button type="button" class="btn btn-info btn-sm" >Edit</button>
+                            </span>
+                            <form action="{% url 'MyApp:delete' project.id %}" method="post" id="delete_form_{{ project.id }}">
+                                {% csrf_token %}
+                                <span class="badge badge-warning">
+                                    <input class="btn btn-warning btn-sm" type="button" onclick="submit_delete({{ project.id }})" value="delete">
+                                </span>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Create New Project -->
+<div class="modal fade" id="createpro" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Create Projects</h1>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <div class="modal-body">
+                {% crispy form %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

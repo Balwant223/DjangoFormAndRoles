@@ -4,6 +4,5 @@ app_name = 'MyApp'
 
 urlpatterns = [
     path('',views.projectHome,name='home'),
-    path('create/', views.createProject, name='create'),
-    path('list/',views.listProject,name='list'),
+    path('delete/<int:pk>/',views.deleteProject, name='delete'),
 ]
