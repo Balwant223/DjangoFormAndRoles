@@ -25,19 +25,16 @@
                 <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
             <div class="modal-body">
-                <ul class="list-group" id="all_projects_list">
+                <ul class="list-group">
                     {% for project in projects %}
                         <li class="list-group-item d-flex justify-content-between align-items-center" id="project_{{project.id}}">
                             {{ project.name }}
-                            <span class="badge badge-info" style="margin-left: 50%;">
+                            <span class="badge badge-info" style="margin-right: -55%;">
                                 <button type="button" class="btn btn-info btn-sm" >Edit</button>
                             </span>
-                            <form action="{% url 'MyApp:delete' project.id %}" method="post" id="delete_form_{{ project.id }}">
-                                {% csrf_token %}
-                                <span class="badge badge-warning">
-                                    <input class="btn btn-warning btn-sm" type="button" onclick="submit_delete({{ project.id }})" value="delete">
-                                </span>
-                            </form>
+                            <span class="badge badge-warning">
+                                <button class="btn btn-warning btn-sm" onclick="submit_delete({{ project.id }})" value="delete">Delete</button>
+                            </span>
                         </li>
                     {% endfor %}
                 </ul>

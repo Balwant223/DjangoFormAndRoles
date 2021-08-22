@@ -15,7 +15,8 @@ class ProjectForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_method = 'post'
+        self.helper.form_method = 'POST'
+        self.helper.form_action = ''
         self.helper.layout = Layout(
             Row(
                 Column('name', css_class='form-group col-md-6 mb-0'),
@@ -29,5 +30,5 @@ class ProjectForm(forms.Form):
             Row(
                 Column('value',css_class='form-group col-md-6 mb-0'),
             ),
-            Button('submit', 'Create Project', css_class='btn btn-success')
+            Submit('pro_submit', 'Create Project', css_class='btn btn-success')
         )
