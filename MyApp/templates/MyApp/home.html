@@ -29,12 +29,16 @@
                     {% for project in projects %}
                         <li class="list-group-item d-flex justify-content-between align-items-center" id="project_{{project.id}}">
                             {{ project.name }}
-                            <span class="badge badge-info" style="margin-right: -55%;">
-                                <button type="button" class="btn btn-info btn-sm" >Edit</button>
+                            {% if request.user.is_manager %}
+                            <div class="row">
+                            <span class="badge badge-info">
+                                <a href="{% url 'MyApp:edit' project.id %}"><button type="button" class="btn btn-info">Edit</button></a>
                             </span>
-                            <span class="badge badge-warning">
-                                <button class="btn btn-warning btn-sm" onclick="submit_delete({{ project.id }})" value="delete">Delete</button>
+                            <span class="badge badge-warning" style="margin-left: 5px;">
+                                <button class="btn btn-warning btn-sm" onclick="submit_delete({{ project.id }})" >Delete</button>
                             </span>
+                            </div>
+                            {% endif %}
                         </li>
                     {% endfor %}
                 </ul>
@@ -51,6 +55,23 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title">Create Projects</h1>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <div class="modal-body">
+                {% crispy form %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Project-->
+<div class="modal fade" id="editpro" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Edit Projects</h1>
                 <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
             <div class="modal-body">

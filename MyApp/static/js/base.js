@@ -8,3 +8,6 @@ function submit_delete(id) {
         }
     });
 }
+function popu_form() {
+    console.log('{{ project.name }}');
+}
