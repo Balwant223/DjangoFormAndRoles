@@ -2,6 +2,16 @@
 {% load crispy_forms_tags %}
 {% block title %}Login{% endblock %}
 {% block content %}
+{% for message in messages %}
+<div class="alert alert-success">
+    <a class="close" href="#" data-dismiss="alert">×</a>
+    {{ message }}
+</div>
+{% endfor %}
 {% crispy form %}
-<h4 style="padding-top:10px;">Don't have a Account <a href="{% url "MyApp:signup" %}"><span class="badge badge-success">Create</span></a></h4>
+{{form.errors}}
+<div style="margin-top: 5%;">
+    <h5>Don't have a Account <a href="{% url "MyApp:signup" %}"><span class="badge badge-success">Create</span></a>
+    </h5>
+</div>
 {% endblock %}

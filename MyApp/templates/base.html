@@ -12,21 +12,21 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #7dbce9;">
         <a class="navbar-brand" href="{% url "MyApp:home" %}">Project Management</a>
-        <ul class="navbar-nav">
-        {% if request.user.is_authenticated %}
-            <li class="nav-item">
-                <h2 class="navbar-text">{{ request.user.username }}</h2>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url "MyApp:logout" %}">Logout</a>
-            </li>
-        {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url "MyApp:login" %}">Login</a>
-            </li>
-        {% endif %}
+        <ul class="navbar-nav ml-auto">
+            {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <span class="navbar-brand">Hii&nbsp;&nbsp;&nbsp;<strong>{{ request.user.username }}</strong></span>
+                </li>
+                <li class="nav-item">
+                    <h9><a class="nav-link" href="{% url "MyApp:logout" %}">Logout</a></h9>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "MyApp:login" %}">Login</a>
+                </li>
+            {% endif %}
         </ul>
     </nav>
     <div id="main-content" class="container-sm border">

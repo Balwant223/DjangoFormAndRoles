@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Project Details{% endblock %}
+{% block content %}
+{{form.name|as_crispy_field }}
+{{ form.start|as_crispy_field }}
+{{ form.end|as_crispy_field }}
+{{ form.value|as_crispy_field }}
+{% endblock %}

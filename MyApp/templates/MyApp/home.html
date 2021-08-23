@@ -15,6 +15,14 @@
             <button class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="#listpro">View</button>
         </div>
     </div>
+    {% if request.user.is_manager %}
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Deleted Projects</h4>
+            <button class="btn btn-primary btn-lg" type="button"  data-toggle="modal" data-target="#deletedpro">Create</button>
+        </div>
+    </div>
+    {% endif %}
 </div>
 <!-- List All Project -->
 <div class="modal fade" id="listpro" data-backdrop="static">
@@ -28,7 +36,7 @@
                 <ul class="list-group">
                     {% for project in projects %}
                         <li class="list-group-item d-flex justify-content-between align-items-center" id="project_{{project.id}}">
-                            {{ project.name }}
+                            <a href="{% url 'MyApp:details' project.id %}"> {{project.name }}</a>
                             {% if request.user.is_manager %}
                             <div class="row">
                             <span class="badge badge-info">
@@ -66,16 +74,23 @@
         </div>
     </div>
 </div>
-<!-- Edit Project-->
-<div class="modal fade" id="editpro" data-backdrop="static">
+<!-- Deleted Project -->
+<div class="modal fade" id="deletedpro" data-backdrop="static">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title">Edit Projects</h1>
+                <h1 class="modal-title">All Deleted Projects</h1>
                 <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
             <div class="modal-body">
-                {% crispy form %}
+                <ul class="list-group">
+                    {% for del in deleted %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center" id="deleted-items">
+                        <h5>{{ del.name }}</h3>
+                        <h8>{{ del.deleted }}</h5>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

@@ -2,5 +2,26 @@
 {% load crispy_forms_tags %}
 {% block title %}Edit Project{% endblock %}
 {% block content %}
-{% crispy form %}
+<form method="post">
+    {% csrf_token %}
+    <div class="form-row form-row">
+        <div class="form-group col-md-6 mb-0">
+            {{form.name|as_crispy_field }}
+        </div>
+    </div>
+    <div class="form-row form-row">
+        <div class="form-group col-md-6 mb-0">
+            {{ form.start|as_crispy_field }}
+        </div>
+        <div class="form-group col-md-6 mb-0">
+            {{ form.end|as_crispy_field }}
+        </div>
+    </div>
+    <div class="form-row form-row">
+        <div class="form-group col-md-6 mb-0">
+            {{ form.value|as_crispy_field }}
+        </div>
+    </div>
+    <input type="submit" value="Update" class="btn btn-primary">
+</form>
 {% endblock %}
